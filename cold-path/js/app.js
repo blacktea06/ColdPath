@@ -273,7 +273,7 @@ function reset(){di=0;S.chk={};S.req=null;S.rt=null;S.spot=null;S.fired=-1;S.nrf
 $('#dnext').onclick=step;$('#dprev').onclick=reset;$('#dauto').onclick=()=>{reset();let n=0;const f=()=>{step();if(++n<STEPS.length)setTimeout(f,4500)};f()};
 // ===== v6 layer =====
 const LS={g(){try{return JSON.parse(localStorage.getItem('coldpath')||'{}')}catch(e){return{}}},s(o){try{localStorage.setItem('coldpath',JSON.stringify(o))}catch(e){}}};
-const PR=Object.assign({theme:'light',tx:1,hc:0,snd:0,tts:0,hap:1,lang:'en',lp:0,onb:0,pins:null,priv:'circle',xc:{},hh:{}},LS.g()),save=()=>LS.s(PR);
+const PR=Object.assign({theme:'auto',tx:1,hc:0,snd:0,tts:0,hap:1,lang:'en',lp:0,onb:0,pins:null,priv:'circle',xc:{},hh:{}},LS.g()),save=()=>LS.s(PR);
 const tw=n=>TW.find(a=>a.n==n);
 Object.assign(S,{_k:{},fold:{rkc:1,shc:1},scn:'dec2022',tip:0,how:0,live:null,updAt:Date.now(),tm:null,share:0,code:'CP-'+Math.random().toString(36).slice(2,7).toUpperCase(),reqN:0,thx:[{from:'Priya',to:'Walt',msg:'Thank you for clearing our driveway!'},{from:'Marta',to:'Tasha',msg:'You checked on my mom twice. We’re so grateful.'}],
  pins:PR.pins||[{n:'Home (East Buffalo)',x:S.home.x,y:S.home.y},{n:'Mom (Hamburg)',x:tw('Hamburg').x,y:tw('Hamburg').y},{n:'Work (Amherst)',x:tw('Amherst').x,y:tw('Amherst').y}],
@@ -301,7 +301,7 @@ function skyU(){const el=$('#sky');if(!el)return;const th=document.documentEleme
 addEventListener('scroll',()=>{const y=Math.min(scrollY,500);['h3','h2','h1'].forEach((id,i)=>{const e=document.getElementById(id);if(e)e.style.transform=`translateY(${(y*.03*(i+1)).toFixed(1)}px)`})},{passive:true});
 addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.card');if(c){const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}});
 // ---- preferences ----
-function applyPrefs(){const h=document.documentElement;PR.theme=='light'?h.removeAttribute('data-theme'):h.setAttribute('data-theme',PR.theme);h.classList.toggle('tx2',PR.tx==2);h.classList.toggle('hc',!!PR.hc);h.classList.toggle('lp',!!PR.lp);h.lang=PR.lang;const b=$('#lpb');b.classList.toggle('on',!!PR.lp);b.textContent=PR.lp?'Storm mode: on':'Storm mode';skyU();S._k={};save()}
+function applyPrefs(){const h=document.documentElement;PR.theme=='auto'?h.removeAttribute('data-theme'):h.setAttribute('data-theme',PR.theme);h.classList.toggle('tx2',PR.tx==2);h.classList.toggle('hc',!!PR.hc);h.classList.toggle('lp',!!PR.lp);h.lang=PR.lang;const b=$('#lpb');b.classList.toggle('on',!!PR.lp);b.textContent=PR.lp?'Storm mode: on':'Storm mode';skyU();S._k={};save()}
 function setHousehold(){ITEMS.length=7;if(PR.hh.kids)ITEMS.push('Kids: formula, diapers, children’s medicine');if(PR.hh.pets)ITEMS.push('Pets: food, water, leash');if(PR.hh.older)ITEMS.push('Older adult: medications and warm layers');if(PR.xc.oxygen)ITEMS.push('Backup power for medical equipment')}
 const XR={'Kids: formula, diapers, children’s medicine':'Pick up formula, diapers and children’s medicine now, or ask your circle to bring them.','Pets: food, water, leash':'Stock three days of pet food and water, and keep a leash and carrier by the door.','Older adult: medications and warm layers':'Double-check their medications and warm layers, and check on them often.','Backup power for medical equipment':'Charge backup batteries now and tell your utility you depend on powered medical equipment.'};
 const xcOn=()=>Object.values(PR.xc).some(Boolean);
