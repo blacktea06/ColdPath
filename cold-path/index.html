@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Cold Path</title><meta name="theme-color" content="#1f6f5c"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icons/icon-192.png"><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="css/styles.css"></head><body>
+<a class="skip sr" href="#v-home">Skip to content</a><div id="sky"></div><div id="aur"></div>
+<svg id="hills" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true"><g id="h3" style="fill:var(--hill3)"><path d="M0 140Q150 88 320 130T640 118T960 134T1200 108V200H0Z"/></g><g id="h2" style="fill:var(--hill2)"><path d="M0 166Q200 120 420 160T800 150T1200 160V200H0Z"/><g fill="#2f8a5e" opacity=".75"><polygon points="90,152 102,118 114,152"/><polygon points="130,156 140,128 150,156"/><polygon points="700,152 714,114 728,152"/><polygon points="1040,154 1052,124 1064,154"/><polygon points="1090,158 1100,132 1110,158"/></g></g><g id="h1" style="fill:var(--hill1)"><path d="M0 189Q300 160 600 183T1200 176V200H0Z"/></g></svg>
+<canvas id="snow" aria-hidden="true"></canvas><div id="toast" role="status" aria-live="polite"></div>
+<header class="top"><div class="brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5"/></svg>Cold<i>Path</i></div><nav id="nav"></nav><div class="hr"><button class="ib" data-a="bell">Alerts<b class="dot" id="bn"></b></button><button class="ib" id="lpb" data-a="lp">Storm mode</button><button class="ib" data-a="demo">Demo</button></div></header><div id="offl" role="alert">You’re offline. Showing the last info saved on this device.</div>
+<div id="demo"><b class="sm">Demo controls (hide before filming)</b><button class="btn g s" id="play">Play</button><input type="range" id="tr" min="0" max="72" step="0.5"><span id="tl" class="sm" style="min-width:130px"></span><span id="dtitle" class="sm mut"></span><button class="btn g s" id="dprev">Reset</button><button class="btn s" id="dnext">Next step</button><button class="btn g s" id="dauto">Auto-run</button></div>
+<main class="app">
+<section class="view on" id="v-home"><div class="grid"><div>
+ <div class="loc"><input id="q" list="places" aria-label="Town or county" placeholder="Your town or county (e.g. Cheektowaga, Erie County)"><datalist id="places"></datalist><button class="btn" id="go">Check</button><button class="btn g" data-a="geo">Use my location</button><button class="btn g" data-a="pin" aria-label="Pin this place">☆ Pin</button><span id="qinfo" class="sm mut"></span></div><div class="mp" id="mp"></div>
+ <div class="card hero" id="hero"></div><div class="card" id="next"></div><div class="card fl" id="flurry"></div>
+ <div class="card" id="mapcard"><div class="row" style="border:0;padding-top:0"><h3 style="margin:0">Live radar &amp; map</h3><span class="sm mut" id="ts"></span></div>
+  <div class="chips" id="modes"></div>
+  <div class="mapw"><canvas id="map" tabindex="0" role="img" aria-label="Map"></canvas><ul class="sr" id="srl"></ul><div class="zb"><button data-a="zi" aria-label="Zoom in">+</button><button data-a="zo" aria-label="Zoom out">−</button><button data-a="rc" aria-label="Recenter on my area">⌖</button></div><div class="hint">Drag to move · scroll or pinch to zoom</div><div class="mtip" id="mtip"></div></div>
+  <div class="lg2" id="legend"></div><div class="chips" id="pt"></div><div class="spot" id="spot"></div>
+  <h3 style="margin:16px 0 8px;font-size:18px">Safest route from home</h3><div class="loc" style="margin-bottom:6px"><select id="dest"></select><button class="btn" id="rtb">Compare routes</button></div><div id="rtinfo" class="sm mut"></div>
+  <div class="sm mut" style="margin-top:8px">Sample locations for the prototype. Verify before launch.</div></div>
+ <div class="card" id="ready"></div><div class="card" id="circ"></div>
+ 
+</div><div>
+ <div class="card" id="alerts"><h3>Alerts</h3><div id="al"></div><div id="pwr" style="margin-top:8px"></div></div>
+ <div class="card" id="rkc"><h3>Highest-risk areas</h3><div id="rk"></div></div>
+ <div class="card" id="shc"><h3>Nearest shelters &amp; warming centers</h3><div id="sh"></div></div><div class="card" id="nws"></div><div class="card" id="tmr"></div><div class="card"><h3>Official help lines</h3><div class="row"><span>Emergency</span><a class="btn s" href="tel:911" data-a="tel">Call 911</a></div><div class="row"><span>Crisis line (call or text)</span><a class="btn g s" href="tel:988" data-a="tel">988</a></div><div class="row"><span>Community help</span><a class="btn g s" href="tel:211" data-a="tel">211</a></div><div class="row"><span>Buffalo city services</span><a class="btn g s" href="tel:311" data-a="tel">311</a></div></div>
+</div></div></section>
+
+<section class="view" id="v-comm"><div class="two"><div>
+ <div class="card"><div class="pg" id="ch"></div></div><div class="card" id="imp"></div>
+ <div class="card"><h3>My circle</h3><div class="sm mut" style="margin:-4px 0 6px">Numbers show who gets alerted first in an emergency.</div><div id="ct"></div><div class="loc" style="margin:10px 0 0"><input id="inv" placeholder="Invite by name or phone"><button class="btn g" data-a="add">Invite</button></div><div class="sm mut" style="margin-top:6px">A person becomes an emergency contact only after they accept too.</div></div>
+ <div class="card" id="mine"></div><div class="card" id="inv2"></div><div class="card" id="blk"></div><div class="card" id="thx"></div></div>
+ <div><div class="card"><h3>Neighbors who need a hand</h3><div id="nb"></div></div>
+ <div class="card"><h3>Neighborhood board</h3><div class="sm mut" style="margin:-4px 0 6px">For non-urgent asks and offers. Emergencies go through “I need help.”</div><div id="bd"></div>
+  <div class="loc" style="margin:10px 0 0"><select id="bt"><option value="need">I need</option><option value="offer">I can offer</option></select><input id="bx" placeholder="e.g. a shovel, a ride, soup"><button class="btn g" data-a="post">Post</button></div></div></div></div></section>
+
+<section class="view" id="v-vol"><div class="two"><div>
+ <div class="card" id="vstat"></div><p class="sm mut" id="vnote" style="margin:-6px 6px 14px">Prototype note: ID and background checks are simulated here. A real launch needs a verification vendor. Phone numbers stay private; helpers are contacted through Cold Path.</p>
+ <div class="card" id="vcap" style="display:none"><h3>What you can help with</h3><div class="chips" id="caps"></div><div class="row"><span>Help within <b id="vrv">3 km</b> of home</span><input type="range" id="vrad" min="1" max="10" value="3"></div><div class="row"><span>Available to help now</span><input type="checkbox" id="avl"></div><div class="row"><span>Host a warming spot at my home<br><span class="sm mut">Shows on the map as neighbor-hosted</span></span><input type="checkbox" id="host"></div></div>
+ <div class="card" id="rep"></div></div>
+ <div><div class="card"><h3>Open requests near you</h3><div class="sm mut" style="margin:-4px 0 6px">Escalated from people whose circle couldn’t respond.</div><div id="vq"></div></div>
+ <div class="card"><h3>My active tasks</h3><div id="vact"></div></div>
+ <div class="card"><h3>Verified helpers near you</h3><div id="vl"></div></div></div></div></section>
+
+<section class="view" id="v-prof"><div class="two"><div><div class="card" id="pf"></div><div class="card" id="dsp"></div><div class="card" id="hh"></div></div><div><div class="card" id="prv"></div><div class="card"><h3>Notifications</h3><label class="row"><span>Push alerts for storms near me</span><input type="checkbox" checked></label><label class="row"><span>Text me if I haven’t confirmed Safe</span><input type="checkbox" checked></label><label class="row"><span>Alert me when a neighbor needs help</span><input type="checkbox" checked></label><label class="row"><span>Share my Safe status with my circle</span><input type="checkbox" checked></label></div><div class="card" id="yr"></div></div></div></section>
+<div class="foot"><div id="ft"></div><p class="sm">Built in Buffalo. Stay warm, and check on a neighbor.</p><p class="sm"><a href="#" data-a="info" data-i="about">About &amp; accuracy</a><a href="#" data-a="info" data-i="api">API &amp; other cities</a><a href="#" data-a="info" data-i="terms">Terms</a></p><p class="sm"><b>Not a substitute for 911.</b> In an emergency, call 911.</p></div>
+</main>
+<div id="cap" role="status"></div><div id="live" class="sr" aria-live="polite"></div><button class="chatb" id="chatb" data-a="chat" aria-label="Open Gemini assistant">✦ Ask Gemini</button>
+<aside class="cp" id="cp" aria-label="Gemini storm assistant"><div class="cph"><div><b class="xm" style="font-size:18px">Storm assistant</b><br><span class="gb">✦ Powered by Gemini API</span></div><button class="ib" data-a="chat" aria-label="Close assistant">Close</button></div>
+ <div class="sm mut" id="gs" style="margin-bottom:6px"></div><div id="chat"></div><div class="chips" id="chips"></div>
+ <div class="loc" style="margin:6px 0 0"><input id="ci" placeholder="Ask about your area, supplies, shelters…"><button class="btn" id="cs">Send</button></div>
+ <details class="gset" style="margin-top:8px"><summary class="sm mut">Connect Gemini</summary><p class="sm mut">Best: point to your own backend (keeps the API key off the page). For quick local tests only, paste a key. It stays in memory and is never saved.</p><div class="loc"><input id="gurl" placeholder="Backend URL, e.g. http://localhost:8000/chat"><input id="gkey" type="password" placeholder="Dev API key (local only)"><input id="gmod" value="gemini-2.5-flash" aria-label="Model"><button class="btn g s" id="gsave">Save</button></div></details>
+ <details style="margin-top:6px"><summary class="sm mut">What Gemini is given each time</summary><pre id="ctx"></pre></details></aside>
+<button class="fab" data-a="help">I need help</button>
+<div class="modal" id="md"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<script type="module" src="/js/app.js"></script></body></html>
